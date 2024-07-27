@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ListEmployee = () => {
 
   const [employees, setEmployees] = useState([])
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -17,6 +18,11 @@ const ListEmployee = () => {
       .then(data => setEmployees(data))
       .catch(error => console.error('There was a problem with the fetch operation:', error));
   }, []);
+
+  const updateEmployee = (id) => {
+    navigate(`/edit/${id}`)
+  }
+
 
   return (
     <div className='flex justify-center'>
@@ -38,6 +44,9 @@ const ListEmployee = () => {
               <th scope="col" className="px-6 py-3">
                 Email
               </th>
+              <th scope="col" className="px-6 py-3">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -56,6 +65,12 @@ const ListEmployee = () => {
                   </td>
                   <td className="px-6 py-4 ">
                     {employee.email}
+                  </td>
+                  <td className="px-6 py-4 ">
+                    <div className='space-x-2'>
+                      <button className='bg-blue-500 text-white p-2 w-fit rounded-lg' onClick={() => { updateEmployee(employee.id) }}>Update</button>
+                      <button className='bg-red-500 text-white p-2 w-fit rounded-lg'>Delete</button>
+                    </div>
                   </td>
                 </tr>
               ))

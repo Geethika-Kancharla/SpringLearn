@@ -8,6 +8,7 @@ function App() {
     <Routes>
       <Route path='/' element={<ListEmployee />} />
       <Route path='/add' element={<AddEmployee />} />
+      <Route path='/edit/:id' element={<AddEmployee />} />
     </Routes>
   );
 }
