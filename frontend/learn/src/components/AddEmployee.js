@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -16,6 +16,20 @@ const AddEmployee = () => {
         lname: '',
         email: ''
     })
+
+    useEffect(() => {
+
+        if (id) {
+            axios.get("http://localhost:8080/api/employees/" + id)
+                .then((response) => {
+                    setFname(response.data.firstName);
+                    setLname(response.data.lastName);
+                    setEmail(response.data.email);
+                })
+                .catch(error => console.error(error));
+        }
+
+    }, [id])
 
     const handleSubmit = (e) => {
         e.preventDefault();
