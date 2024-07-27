@@ -56,7 +56,6 @@ const AddEmployee = () => {
                         navigate("/");
                     })
                     .catch((error) => console.error(error));
-
             }
         }
     }

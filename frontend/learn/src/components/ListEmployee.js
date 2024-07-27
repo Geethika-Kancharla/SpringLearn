@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ListEmployee = () => {
 
@@ -8,6 +9,10 @@ const ListEmployee = () => {
 
 
   useEffect(() => {
+    getAllEmployees();
+  }, []);
+
+  const getAllEmployees = () => {
     fetch('http://localhost:8080/api/employees')
       .then(response => {
         if (!response.ok) {
@@ -17,10 +22,21 @@ const ListEmployee = () => {
       })
       .then(data => setEmployees(data))
       .catch(error => console.error('There was a problem with the fetch operation:', error));
-  }, []);
+  }
 
   const updateEmployee = (id) => {
     navigate(`/edit/${id}`)
+  }
+
+  const deleteEmployee = (id) => {
+    axios.delete("http://localhost:8080/api/employees/" + id)
+      .then((response) => {
+        getAllEmployees();
+        console.log(id);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
 
@@ -69,7 +85,7 @@ const ListEmployee = () => {
                   <td className="px-6 py-4 ">
                     <div className='space-x-2'>
                       <button className='bg-blue-500 text-white p-2 w-fit rounded-lg' onClick={() => { updateEmployee(employee.id) }}>Update</button>
-                      <button className='bg-red-500 text-white p-2 w-fit rounded-lg'>Delete</button>
+                      <button className='bg-red-500 text-white p-2 w-fit rounded-lg' onClick={() => { deleteEmployee(employee.id) }}>Delete</button>
                     </div>
                   </td>
                 </tr>
