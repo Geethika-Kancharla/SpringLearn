@@ -41,11 +41,23 @@ const AddEmployee = () => {
                 email
             }
             console.log(employee);
-            axios.post("http://localhost:8080/api/employees", employee)
-                .then((response) => {
-                    console.log(response.data);
-                })
-            navigate("/");
+
+            if (id) {
+                axios.put("http://localhost:8080/api/employees/" + id, employee)
+                    .then(response => {
+                        console.log(response.data);
+                        navigate("/");
+                    }).catch((error) => console.error(error));
+            }
+            else {
+                axios.post("http://localhost:8080/api/employees", employee)
+                    .then((response) => {
+                        console.log(response.data);
+                        navigate("/");
+                    })
+                    .catch((error) => console.error(error));
+
+            }
         }
     }
 
