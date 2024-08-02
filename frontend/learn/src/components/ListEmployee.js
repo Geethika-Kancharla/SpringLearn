@@ -39,12 +39,11 @@ const ListEmployee = () => {
       })
   }
 
-
   return (
     <div className='flex justify-center'>
       <div className="w-3/5  flex flex-col space-y-3">
         <h1 className='text-center font-bold text-3xl'>List Employees</h1>
-        <Link to='/add'><button className='mt-5 text-left bg-blue-500 w-fit rounded-md text-white p-2 m-5'>Add Employee</button></Link>
+        <Link to='/try'><button className='mt-5 text-left bg-blue-500 w-fit rounded-md text-white p-2 m-5'>Add Employee</button></Link>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 light:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 light:bg-gray-700 light:text-gray-400">
             <tr>
@@ -60,6 +59,7 @@ const ListEmployee = () => {
               <th scope="col" className="px-6 py-3">
                 Email
               </th>
+
               <th scope="col" className="px-6 py-3">
                 Actions
               </th>
@@ -82,6 +82,9 @@ const ListEmployee = () => {
                   <td className="px-6 py-4 ">
                     {employee.email}
                   </td>
+
+
+
                   <td className="px-6 py-4 ">
                     <div className='space-x-2'>
                       <button className='bg-blue-500 text-white p-2 w-fit rounded-lg' onClick={() => { updateEmployee(employee.id) }}>Update</button>
@@ -100,3 +103,24 @@ const ListEmployee = () => {
 }
 
 export default ListEmployee
+
+
+
+// Handling form data
+
+// const [product, setProduct] = useState({
+//     name: "",
+//     brand: "",
+//     description: "",
+//     price: "",
+//     category: "",
+//     stockQuantity: "",
+//     releaseDate: "",
+//     productAvailable: false,
+//   });
+//   const [image, setImage] = useState(null);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setProduct({ ...product, [name]: value });
+//   }; this is Employee entity package com.learn.Learn.entity;
